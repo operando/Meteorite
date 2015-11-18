@@ -4,7 +4,7 @@ This library provides the ability to upload a screenshot of your app to Slack.
 
 # How to use
 
-#### 1. Add your Slack API token as `meta-data` element to the `application` element
+##### 1. Add your Slack API token as `meta-data` element to the `application` element
 
 Slack API token will be obtained from the following URL.
 
@@ -32,7 +32,7 @@ https://api.slack.com/web
 </manifest>
 ```
 
-#### 2. Add `MeteoriteActivity` and `MeteoroidReceiver` to the manifest:
+##### 2. Add `MeteoriteActivity` and `MeteoroidReceiver` to the manifest:
 
 ```xml
 // your app's AndroidManifest.xml
@@ -44,7 +44,7 @@ https://api.slack.com/web
     android:exported="true"/>
 ```
 
-#### 3. Call `MeteoroidNotification.show()` and `registerActivityLifecycleCallbacks(new MeteoroidActivityLifecycleCallbacks())` at the Application class.
+##### 3. Call `MeteoroidNotification.show()` and `registerActivityLifecycleCallbacks(new MeteoroidActivityLifecycleCallbacks())` at the Application class.
 
 ```java
 
