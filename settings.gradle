@@ -1,1 +1,1 @@
-include ':meteorite-sample', ':meteoroid', ':meteorite', ':meteoroid-sample'
+include ':meteorite-sample',  ':meteorite'
