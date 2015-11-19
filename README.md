@@ -39,12 +39,12 @@ https://api.slack.com/web
 <activity android:name="com.os.operando.meteorite.MeteoriteActivity"/>
 
 <receiver
-    android:name="com.os.operando.meteoroid.MeteoroidReceiver"
+    android:name="com.os.operando.meteor.MeteorReceiver"
     android:enabled="true"
     android:exported="true"/>
 ```
 
-##### 3. Call `MeteoroidNotification.show()` and `registerActivityLifecycleCallbacks(new MeteoroidActivityLifecycleCallbacks())` at the Application class.
+##### 3. Call `MeteorNotification.show()` and `registerActivityLifecycleCallbacks(new MeteorActivityLifecycleCallbacks())` at the Application class.
 
 ```java
 
@@ -52,8 +52,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        MeteoroidNotification.show(this, MeteoriteActivity.createComponentName(this));
-        registerActivityLifecycleCallbacks(new MeteoroidActivityLifecycleCallbacks());
+        MeteorNotification.show(this, MeteoriteActivity.createComponentName(this));
+        registerActivityLifecycleCallbacks(new MeteorActivityLifecycleCallbacks());
     }
 }
 ```
@@ -72,5 +72,5 @@ allprojects {
     }
 }
 
-compile 'com.os.operando.meteorite:meteorite:1.0.0'
+compile 'com.os.operando.meteorite:meteorite:0.1.0'
 ```

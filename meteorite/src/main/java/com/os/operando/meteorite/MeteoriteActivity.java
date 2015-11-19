@@ -30,7 +30,7 @@ public class MeteoriteActivity extends AppCompatActivity implements Callback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty);
-        mBitmap = Meteoroid.getScreenshotBitmap(getIntent());
+        mBitmap = Meteor.getScreenshotBitmap(getIntent());
         ((ImageView) findViewById(R.id.screen_shot)).setImageBitmap(mBitmap);
     }
 
@@ -41,7 +41,7 @@ public class MeteoriteActivity extends AppCompatActivity implements Callback {
             File bitmapFile = IOUtils.newUniqueTempFile(cacheDirectoryPath, ".jpg");
             IOUtils.saveBitmap(mBitmap, bitmapFile);
 
-            new Meteor.Builder()
+            new Meteoroid.Builder()
                     .channels("#general")
                     .title("test")
                     .initialComment(((AppCompatEditText) findViewById(R.id.post_message)).getText().toString())
