@@ -22,7 +22,7 @@
         <activity android:name="com.os.operando.meteorite.MeteoriteActivity"/>
 
         <receiver
-            android:name="com.os.operando.meteoroid.MeteoroidReceiver"
+            android:name="com.os.operando.meteor.MeteorReceiver"
             android:enabled="true"
             android:exported="true"/>
 
