@@ -46,7 +46,7 @@ dependencies {
 }
 
 group = 'com.os.operando.meteorite'
-version = '0.1.0'
+version = '0.1.1'
 
 def siteUrl = 'https://github.com/operando/Meteorite'
 def gitUrl = 'https://github.com/operando/Meteorite.git'
