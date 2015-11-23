@@ -37,6 +37,7 @@ https://api.slack.com/web
 ```xml
 // your app's AndroidManifest.xml
 <activity android:name="com.os.operando.meteorite.MeteoriteActivity"/>
+<activity android:name="com.os.operando.meteorite.ScreenshotActivity" />
 
 <receiver
     android:name="com.os.operando.meteor.MeteorReceiver"
@@ -52,8 +53,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        MeteorNotification.show(this, MeteoriteActivity.createComponentName(this));
-        registerActivityLifecycleCallbacks(new MeteorActivityLifecycleCallbacks());
+        Meteorite.init(this);
     }
 }
 ```
@@ -72,5 +72,5 @@ allprojects {
     }
 }
 
-compile 'com.os.operando.meteorite:meteorite:0.1.0'
+compile 'com.os.operando.meteorite:meteorite:0.1.1'
 ```
