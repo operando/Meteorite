@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.os.operando.meteorite.sample"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.os.operando.meteorite.sample">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".MyApplication"
@@ -13,22 +13,23 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".TextInputActivity"></activity>
-        <activity android:name="com.os.operando.meteorite.MeteoriteActivity"/>
+        <activity android:name="com.os.operando.meteorite.MeteoriteActivity" />
+        <activity android:name="com.os.operando.meteorite.ScreenshotActivity" />
 
         <receiver
             android:name="com.os.operando.meteor.MeteorReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
         <meta-data
             android:name="com.os.operando.meteorite.slackToken"
-            android:value="xoxp-14571310961-14565817428-14565947796-41e6061fd3"/>
+            android:value="xoxp-14571310961-14565817428-14565947796-41e6061fd3" />
     </application>
 
 </manifest>
