@@ -10,10 +10,32 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/post_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Post title" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatEditText
             android:id="@+id/post_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Post message" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/post_channel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Post Channel" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
@@ -25,6 +47,7 @@
     <ImageView
         android:id="@+id/screen_shot"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:onClick="onScreenshot" />
 
 </LinearLayout>
