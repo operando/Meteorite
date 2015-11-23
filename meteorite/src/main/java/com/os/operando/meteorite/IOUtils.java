@@ -15,7 +15,7 @@ public class IOUtils {
     public static File getCacheDirectory(@NonNull Context context) throws IOException {
         File cacheDirectory = context.getCacheDir();
         if (cacheDirectory == null) {
-            throw new IOException("External storage not found");
+            throw new IOException("cache storage not found.");
         }
         String screenshotDirectoryPath = cacheDirectory.getAbsolutePath() + File.separator
                 + "screenshot" + File.separator;
@@ -56,12 +56,9 @@ public class IOUtils {
         if (closeable == null) {
             return;
         }
-
         try {
             closeable.close();
         } catch (IOException e) {
-            // ignore
         }
     }
-
 }
