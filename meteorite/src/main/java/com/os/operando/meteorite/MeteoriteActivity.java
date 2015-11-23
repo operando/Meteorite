@@ -6,8 +6,10 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.os.operando.meteor.Meteor;
 import com.os.operando.meteoroid.Meteoroid;
@@ -34,37 +36,6 @@ public class MeteoriteActivity extends AppCompatActivity implements Callback {
         ((ImageView) findViewById(R.id.screen_shot)).setImageBitmap(mBitmap);
     }
 
-    public void onPost(View v) {
-        try {
-            File directory = IOUtils.getCacheDirectory(this);
-            String cacheDirectoryPath = directory.getAbsolutePath();
-            File bitmapFile = IOUtils.newUniqueTempFile(cacheDirectoryPath, ".jpg");
-            IOUtils.saveBitmap(mBitmap, bitmapFile);
-
-            new Meteoroid.Builder()
-                    .channels("#general")
-                    .title("test")
-                    .initialComment(((AppCompatEditText) findViewById(R.id.post_message)).getText().toString())
-                    .uploadFile(bitmapFile)
-                    .token(Meteorite.getToken(this))
-                    .build()
-                    .post(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onFailure(Request request, IOException e) {
-    }
-
-    @Override
-    public void onResponse(Response response) throws IOException {
-        if (response.isSuccessful()) {
-            finish();
-        }
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -73,4 +44,47 @@ public class MeteoriteActivity extends AppCompatActivity implements Callback {
             mBitmap = null;
         }
     }
+
+    public void onPost(View v) {
+        ProgressDialogFragment.show(getFragmentManager());
+        String inputChannel = ((AppCompatEditText) findViewById(R.id.post_channel)).getText().toString();
+        String channel = TextUtils.isEmpty(inputChannel) ? "#general" : '#' != inputChannel.charAt(0) ? "#" + inputChannel : inputChannel;
+        try {
+            File directory = IOUtils.getCacheDirectory(this);
+            String cacheDirectoryPath = directory.getAbsolutePath();
+            File bitmapFile = IOUtils.newUniqueTempFile(cacheDirectoryPath, ".jpg");
+            IOUtils.saveBitmap(mBitmap, bitmapFile);
+
+            new Meteoroid.Builder()
+                    .channels(channel)
+                    .title(((AppCompatEditText) findViewById(R.id.post_title)).getText().toString())
+                    .initialComment(((AppCompatEditText) findViewById(R.id.post_message)).getText().toString())
+                    .uploadFile(bitmapFile)
+                    .token(Meteorite.getToken(this))
+                    .build()
+                    .post(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+            ProgressDialogFragment.dismiss(getFragmentManager());
+        }
+    }
+
+    public void onScreenshot(View v) {
+        startActivity(ScreenshotActivity.createIntent(this, getIntent().getStringExtra(Meteor.Screenshot_key)));
+    }
+
+    @Override
+    public void onFailure(Request request, IOException e) {
+        Toast.makeText(this, "Fail upload screenshot", Toast.LENGTH_SHORT).show();
+        ProgressDialogFragment.dismiss(getFragmentManager());
+    }
+
+    @Override
+    public void onResponse(Response response) throws IOException {
+        if (response.isSuccessful()) {
+            finish();
+        }
+        ProgressDialogFragment.dismiss(getFragmentManager());
+    }
+
 }
